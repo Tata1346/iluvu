@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>I LOVE YOU</title>
+    <style>
+        body {
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(60, 1fr);
+            gap: 2px;
+            width: 95vw;
+            max-width: 600px;
+            /* ขนาดสูงสุดเมื่อบนเดสก์ท็อป */
+            aspect-ratio: 60 / 7;
+        }
+        
+        .cell {
+            width: 100%;
+            padding-top: 100%;
+            /* ทำให้เป็นสี่เหลี่ยมจัตุรัส */
+            background: #222;
+            position: relative;
+        }
+        
+        .cell.active {
+            background: #ff0077;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid" id="grid"></div>
+
+    <script>
+        const grid = document.getElementById('grid');
+        const cols = 60;
+        const rows = 7;
+
+        const activePixels = [
+
+            // ใจ
+            [4, 2],
+            [4, 3],
+            [5, 1],
+            [5, 4],
+            [6, 1],
+            [6, 5],
+            [7, 2],
+            [7, 6],
+            [8, 1],
+            [8, 5],
+            [9, 1],
+            [9, 4],
+            [10, 2],
+            [10, 3],
+
+            // I
+            [15, 1],
+            [15, 2],
+            [15, 3],
+            [15, 4],
+            [15, 5],
+
+            // L
+            [21, 1],
+            [21, 2],
+            [21, 3],
+            [21, 4],
+            [21, 5],
+            [22, 5],
+            [23, 5],
+
+            // O
+            [26, 1],
+            [26, 2],
+            [26, 3],
+            [26, 4],
+            [26, 5],
+            [27, 1],
+            [27, 5],
+            [28, 1],
+            [28, 2],
+            [28, 3],
+            [28, 4],
+            [28, 5],
+
+            // V
+            [31, 1],
+            [31, 2],
+            [31, 3],
+            [31, 4],
+            [32, 5],
+            [33, 1],
+            [33, 2],
+            [33, 3],
+            [33, 4],
+
+            // E
+            [36, 1],
+            [36, 2],
+            [36, 3],
+            [36, 4],
+            [36, 5],
+            [37, 1],
+            [37, 3],
+            [37, 5],
+            [38, 1],
+            [38, 5],
+
+            // Y
+            [44, 1],
+            [44, 2],
+            [46, 1],
+            [46, 2],
+            [45, 3],
+            [45, 4],
+            [45, 5],
+
+            // O
+            [49, 1],
+            [49, 2],
+            [49, 3],
+            [49, 4],
+            [49, 5],
+            [50, 1],
+            [50, 5],
+            [51, 1],
+            [51, 2],
+            [51, 3],
+            [51, 4],
+            [51, 5],
+
+            // U
+            [54, 1],
+            [54, 2],
+            [54, 3],
+            [54, 4],
+            [55, 5],
+            [56, 1],
+            [56, 2],
+            [56, 3],
+            [56, 4]
+        ].map(([x, y]) => y * cols + x);
+
+        // สร้าง grid
+        for (let i = 0; i < cols * rows; i++) {
+            const cell = document.createElement('div');
+            cell.classList.add('cell');
+            grid.appendChild(cell);
+        }
+
+        const cells = document.querySelectorAll('.cell');
+
+        // แสดงทีละจุด
+        let i = 0;
+        const interval = setInterval(() => {
+            if (i >= activePixels.length) {
+                clearInterval(interval);
+                return;
+            }
+            cells[activePixels[i]].classList.add('active');
+            i++;
+        }, 5); // ความเร็ว ปรับเร็วขึ้นแล้ว
+    </script>
+</body>
+
+</html>
